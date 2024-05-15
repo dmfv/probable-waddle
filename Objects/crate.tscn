@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh2ekt12oel2n"]
+
+[ext_resource type="Script" path="res://Objects/crate.gd" id="1_4v2ot"]
+[ext_resource type="Texture2D" uid="uid://cy78xgck4yv1e" path="res://Sprites/crate.png" id="2_t45t3"]
+[ext_resource type="Script" path="res://Components/pushable_component.gd" id="3_14jm5"]
+[ext_resource type="Script" path="res://Components/interactable_component.gd" id="4_gktfs"]
+
+[node name="Crate" type="Node2D"]
+script = ExtResource("1_4v2ot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_t45t3")
+
+[node name="PushableComponent" type="Node" parent="."]
+script = ExtResource("3_14jm5")
+
+[node name="InteractableComponent" type="Node" parent="."]
+script = ExtResource("4_gktfs")
+
+[connection signal="just_interacted" from="InteractableComponent" to="." method="_on_just_interacted"]
