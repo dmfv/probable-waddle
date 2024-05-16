@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cp4e8rvd2bl4c"]
+[gd_scene load_steps=10 format=3 uid="uid://cp4e8rvd2bl4c"]
 
 [ext_resource type="PackedScene" uid="uid://d13c0p5fwo72p" path="res://Player/player.tscn" id="1_78sfj"]
 [ext_resource type="Script" path="res://Scenes/Levels/level.gd" id="1_qkxui"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scenes/Levels/1/sublevel.gd" id="3_tca36"]
 [ext_resource type="PackedScene" uid="uid://cpiancq5mgv4j" path="res://Objects/rock.tscn" id="4_57b4m"]
 [ext_resource type="PackedScene" uid="uid://dxvrtbh5gku7w" path="res://Objects/switch.tscn" id="5_ivcgl"]
-[ext_resource type="PackedScene" uid="uid://dh2ekt12oel2n" path="res://Objects/crate.tscn" id="6_nguaa"]
 [ext_resource type="PackedScene" uid="uid://dntmfab6tikbf" path="res://Objects/door.tscn" id="9_im4vm"]
 [ext_resource type="PackedScene" uid="uid://br5x8txk6rgmc" path="res://Objects/hand_door.tscn" id="9_o6n8i"]
 
@@ -15,7 +14,8 @@
 script = ExtResource("1_qkxui")
 sublevels = [NodePath("SubLevel_0"), NodePath("SubLevel_1")]
 switchers_doors_pathes_dict = {
-NodePath("SubLevel_2/Objects/Switch"): NodePath("SubLevel_1/Objects/Door")
+NodePath("SubLevel_1/Objects/Switch"): NodePath("SubLevel_0/Objects/Door2"),
+NodePath("SubLevel_0/Objects/Switch"): NodePath("SubLevel_1/Objects/Door")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -86,7 +86,6 @@ position = Vector2(-64, -64)
 [node name="Hand_Door" parent="SubLevel_0/Objects" instance=ExtResource("9_o6n8i")]
 
 [node name="SubLevel_1" type="Node2D" parent="."]
-visible = false
 script = ExtResource("3_tca36")
 
 [node name="TileMap" type="TileMap" parent="SubLevel_1"]
@@ -103,22 +102,39 @@ That is a slight mistake, as Node2Ds can be moved around. This has many times le
 Using a Node instead of a Node2D prevents that, as regular Nodes don't have a `position` property"
 
 [node name="Door" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(64, 32)
 
-[node name="Tree" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
-position = Vector2(32, -32)
+[node name="Door2" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(128, -32)
 
-[node name="Tree2" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
-position = Vector2(96, 0)
+[node name="Door3" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(-64, -64)
 
-[node name="Rock" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
-position = Vector2(-32, 32)
-
-[node name="Switch" parent="SubLevel_1/Objects" instance=ExtResource("5_ivcgl")]
+[node name="Door4" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
 position = Vector2(-160, 0)
 
-[node name="Crate" parent="SubLevel_1/Objects" instance=ExtResource("6_nguaa")]
-position = Vector2(-64, -32)
+[node name="Door5" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(-96, 64)
+
+[node name="Tree" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
+position = Vector2(160, -96)
+
+[node name="Tree2" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
+position = Vector2(96, -96)
+
+[node name="Tree3" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
+position = Vector2(0, -64)
+
+[node name="Tree4" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
+position = Vector2(-160, -64)
+
+[node name="Tree5" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
+position = Vector2(-160, 64)
+
+[node name="Switch" parent="SubLevel_1/Objects" instance=ExtResource("5_ivcgl")]
+position = Vector2(128, 32)
+
+[node name="Hand_Door" parent="SubLevel_1/Objects" instance=ExtResource("9_o6n8i")]
+position = Vector2(64, 32)
 
 [node name="Player" parent="." instance=ExtResource("1_78sfj")]
 z_index = 1
