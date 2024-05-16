@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://br5x8txk6rgmc"]
+
+[ext_resource type="Script" path="res://Objects/switch.gd" id="1_vcmvo"]
+[ext_resource type="Texture2D" uid="uid://ci0feebcivem4" path="res://Sprites/door.png" id="2_v17em"]
+[ext_resource type="Script" path="res://Components/interactable_component.gd" id="3_6s6hg"]
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_vcmvo")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_v17em")
+hframes = 2
+
+[node name="InteractableComponent" type="Node" parent="."]
+script = ExtResource("3_6s6hg")
+
+[connection signal="just_interacted" from="InteractableComponent" to="." method="_on_just_interacted"]
