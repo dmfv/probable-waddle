@@ -16,9 +16,7 @@ var sublevel: SubLevel = null:
 
 
 func _ready():
-	pass
-	#print(get_tree().current_scene.get_active_level())
-	#sublevel = get_tree().current_scene.get_active_level().get_active_sublevel() as SubLevel
+	sublevel = get_tree().current_scene.get_active_level().get_active_sublevel() as SubLevel
 
 
 func _unhandled_key_input(event: InputEvent):
@@ -47,15 +45,30 @@ func _unhandled_key_input(event: InputEvent):
 ## Tries to move in the direction `dir`
 func move(dir: Vector2i) -> void:
 	var target_cell: Vector2i = grid_pos + dir
+
+	# TODO: need to move it below the pushable component (separate animation, movement and actual push)	
+	var object: GridObject = sublevel.get_cellv(target_cell)
+	if object != null and \
+	   object.has_component(&"GoThroughComponent") and \
+	   object.get_component(&"GoThroughComponent").can_player_walk_through():
+
+		grid_pos = target_cell
+		return
+
+	if object != null and \
+	   object.has_component(&"TeleportToSublevelComponent"):
+		object.get_component(&"TeleportToSublevelComponent").interact(self)
+		return
+	
 	
 	if pushable_component.try_push(dir):
 		return
 	
 	# Push failed; try to interact with stuff
-	var object: GridObject = sublevel.get_cellv(target_cell)
 	# SubLevel::get_cellv()` can return null, let's handle that just in case
 	if object == null:
 		return
+
 	# Object is not interactable; return
 	if !object.has_component(&"InteractableComponent"):
 		return

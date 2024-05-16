@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dntmfab6tikbf"]
+[gd_scene load_steps=5 format=3 uid="uid://dntmfab6tikbf"]
 
 [ext_resource type="Script" path="res://Objects/switch.gd" id="1_7gqfe"]
 [ext_resource type="Texture2D" uid="uid://ci0feebcivem4" path="res://Sprites/door.png" id="2_7y8dx"]
 [ext_resource type="Script" path="res://Components/interactable_component.gd" id="3_e1xp8"]
+[ext_resource type="Script" path="res://Components/go_through_component.gd" id="4_e55le"]
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_7gqfe")
@@ -15,5 +16,8 @@ hframes = 2
 [node name="InteractableComponent" type="Node" parent="."]
 script = ExtResource("3_e1xp8")
 activate_by_player = false
+
+[node name="GoThroughComponent" type="Node" parent="."]
+script = ExtResource("4_e55le")
 
 [connection signal="just_interacted" from="InteractableComponent" to="." method="_on_just_interacted"]

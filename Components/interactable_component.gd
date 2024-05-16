@@ -5,7 +5,8 @@ class_name InteractableComponent extends Node
 signal just_interacted(interacted_by: GridObject, signal_owner: InteractableComponent)
 
 # In case we may want to disable it
-@export var is_enabled: bool = true  ## initial state
+@export var is_enabled: bool = true  ## is it ever possible to activate?
+@export var is_activated: bool = false  ## initial state. Could be used for syncronization with sprites
 @export var activate_by_player: bool = true  ## can directly actiaved by player or by some switch
 
 func _enter_tree() -> void:
@@ -22,10 +23,12 @@ func _exit_tree() -> void:
 #  E.g. `BreakableComponent (extends InteractableComponent)`
 # See also func move() in player.gd
 func interact(interacted_by: GridObject):
-	if !is_enabled:
+	if not is_enabled:
 		return
-	just_interacted.emit(interacted_by, self)
 
-func flips_state(interacted_by: GridObject):
-	is_enabled = !is_enabled
+	if owner.has_component(&"GoThroughComponent"):
+		var object = owner.get_component(&"GoThroughComponent")
+		object.interact(self)
+		
+	is_activated = !is_activated  # new state
 	just_interacted.emit(interacted_by, self)

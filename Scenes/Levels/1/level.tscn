@@ -15,7 +15,7 @@
 script = ExtResource("1_qkxui")
 sublevels = [NodePath("SubLevel_0"), NodePath("SubLevel_1")]
 switchers_doors_pathes_dict = {
-NodePath("SubLevel_1/Objects/Switch"): NodePath("SubLevel_0/Objects/Door2"),
+NodePath("SubLevel_1/Objects/Switch"): NodePath("SubLevel_1/Objects/Door"),
 NodePath("SubLevel_0/Objects/Switch"): NodePath("SubLevel_1/Objects/Door")
 }
 
@@ -72,19 +72,14 @@ position = Vector2(0, -64)
 [node name="Door" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
 position = Vector2(128, -32)
 
-[node name="Door2" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(64, 32)
-
-[node name="Door3" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(-96, 64)
+[node name="Door3" parent="SubLevel_0/Objects" instance=ExtResource("9_o6n8i")]
+position = Vector2(-95, 64)
 
 [node name="Door4" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
 position = Vector2(-160, 0)
 
 [node name="Door5" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
 position = Vector2(-64, -64)
-
-[node name="Hand_Door" parent="SubLevel_0/Objects" instance=ExtResource("9_o6n8i")]
 
 [node name="Blue_Portal" parent="SubLevel_0/Objects" instance=ExtResource("8_a85fq")]
 position = Vector2(32, -64)

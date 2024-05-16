@@ -11,8 +11,7 @@ extends GridObject
 
 ## Called from InteractableComponent
 func _on_just_interacted(_interacted_by: GridObject, signal_owner: InteractableComponent):
-
-	is_activated = !is_activated # This also updates the sprite thanks to the setter!
+	is_activated = signal_owner.is_activated # This also updates the sprite thanks to the setter!
 	
 	sprite.scale = Vector2(2.0, 0.5)
 	sprite.rotation_degrees = 7.0
