@@ -13,9 +13,9 @@
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("sublevels")]
 script = ExtResource("1_qkxui")
-sublevels = [NodePath("SubLevel_1"), NodePath("SubLevel_2")]
+sublevels = [NodePath("SubLevel_0"), NodePath("SubLevel_1")]
 switchers_doors_pathes_dict = {
-NodePath("SubLevel_2/Objects/Switch"): NodePath("SubLevel_2/Objects/Door")
+NodePath("SubLevel_2/Objects/Switch"): NodePath("SubLevel_1/Objects/Door")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -34,7 +34,59 @@ mouse_filter = 2
 color = Color(0.0745098, 0.0627451, 0.133333, 1)
 metadata/_edit_lock_ = true
 
+[node name="SubLevel_0" type="Node2D" parent="."]
+script = ExtResource("3_tca36")
+
+[node name="TileMap" type="TileMap" parent="SubLevel_0"]
+editor_description = "The tiles of this tileset are all white, and the TimeMap is modulated to the right color.
+This is again because I was originally planning on having many levels with different color schemes."
+modulate = Color(0.211765, 0.156863, 0.305882, 1)
+tile_set = ExtResource("2_oxvjs")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65538, 1, 0, 65536, 1, 0, 65537, 1, 0, 3, 1, 0, 65539, 1, 0, 131071, 1, 0, 131070, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -3, 1, 0, -4, 1, 0, 131068, 1, 0, -65540, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131069, 1, 0, -196605, 1, 0, -196607, 1, 0, -196608, 1, 0, -131073, 1, 0, -65541, 1, 0, -5, 1, 0, 65531, 1, 0, 131067, 1, 0, -196604, 1, 0, -131068, 1, 0, -65532, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 131075, 1, 0, 131073, 1, 0, 131072, 1, 0, 196607, 1, 0, 196606, 1, 0, 196605, 1, 0, 196604, 1, 0, 196603, 1, 0, -131078, 1, 0, -65542, 1, 0, -6, 1, 0, 131066, 1, 0, 196602, 1, 0, -196603, 1, 0, -131067, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, -131077, 1, 0, -131076, 1, 0, -131075, 1, 0)
+
+[node name="Objects" type="Node2D" parent="SubLevel_0"]
+editor_description = "When I started out, I would always make these \"scene objects container\" nodes a Node2D.
+That is a slight mistake, as Node2Ds can be moved around. This has many times led to bugs related to mysterious misalignments or offsets.
+Using a Node instead of a Node2D prevents that, as regular Nodes don't have a `position` property"
+
+[node name="Rock" parent="SubLevel_0/Objects" instance=ExtResource("4_57b4m")]
+position = Vector2(128, 32)
+
+[node name="Rock4" parent="SubLevel_0/Objects" instance=ExtResource("4_57b4m")]
+position = Vector2(-160, -64)
+
+[node name="Rock5" parent="SubLevel_0/Objects" instance=ExtResource("4_57b4m")]
+position = Vector2(-160, 64)
+
+[node name="Rock2" parent="SubLevel_0/Objects" instance=ExtResource("4_57b4m")]
+position = Vector2(160, -96)
+
+[node name="Rock3" parent="SubLevel_0/Objects" instance=ExtResource("4_57b4m")]
+position = Vector2(96, -96)
+
+[node name="Switch" parent="SubLevel_0/Objects" instance=ExtResource("5_ivcgl")]
+position = Vector2(0, -64)
+
+[node name="Door" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(128, -32)
+
+[node name="Door2" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(64, 32)
+
+[node name="Door3" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(-96, 64)
+
+[node name="Door4" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(-160, 0)
+
+[node name="Door5" parent="SubLevel_0/Objects" instance=ExtResource("9_im4vm")]
+position = Vector2(-64, -64)
+
+[node name="Hand_Door" parent="SubLevel_0/Objects" instance=ExtResource("9_o6n8i")]
+
 [node name="SubLevel_1" type="Node2D" parent="."]
+visible = false
 script = ExtResource("3_tca36")
 
 [node name="TileMap" type="TileMap" parent="SubLevel_1"]
@@ -50,74 +102,22 @@ editor_description = "When I started out, I would always make these \"scene obje
 That is a slight mistake, as Node2Ds can be moved around. This has many times led to bugs related to mysterious misalignments or offsets.
 Using a Node instead of a Node2D prevents that, as regular Nodes don't have a `position` property"
 
-[node name="Rock" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
-position = Vector2(128, 32)
-
-[node name="Rock4" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
-position = Vector2(-160, -64)
-
-[node name="Rock5" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
-position = Vector2(-160, 64)
-
-[node name="Rock2" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
-position = Vector2(160, -96)
-
-[node name="Rock3" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
-position = Vector2(96, -96)
-
-[node name="Switch" parent="SubLevel_1/Objects" instance=ExtResource("5_ivcgl")]
-position = Vector2(0, -64)
-
 [node name="Door" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(128, -32)
-
-[node name="Door2" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
 position = Vector2(64, 32)
 
-[node name="Door3" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(-96, 64)
-
-[node name="Door4" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(-160, 0)
-
-[node name="Door5" parent="SubLevel_1/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(-64, -64)
-
-[node name="Hand_Door" parent="SubLevel_1/Objects" instance=ExtResource("9_o6n8i")]
-
-[node name="SubLevel_2" type="Node2D" parent="."]
-visible = false
-script = ExtResource("3_tca36")
-
-[node name="TileMap" type="TileMap" parent="SubLevel_2"]
-editor_description = "The tiles of this tileset are all white, and the TimeMap is modulated to the right color.
-This is again because I was originally planning on having many levels with different color schemes."
-modulate = Color(0.211765, 0.156863, 0.305882, 1)
-tile_set = ExtResource("2_oxvjs")
-format = 2
-layer_0/tile_data = PackedInt32Array(0, 1, 0, 65538, 1, 0, 65536, 1, 0, 65537, 1, 0, 3, 1, 0, 65539, 1, 0, 131071, 1, 0, 131070, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -3, 1, 0, -4, 1, 0, 131068, 1, 0, -65540, 1, 0, -65539, 1, 0, -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131069, 1, 0, -196605, 1, 0, -196607, 1, 0, -196608, 1, 0, -131073, 1, 0, -65541, 1, 0, -5, 1, 0, 65531, 1, 0, 131067, 1, 0, -196604, 1, 0, -131068, 1, 0, -65532, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 131075, 1, 0, 131073, 1, 0, 131072, 1, 0, 196607, 1, 0, 196606, 1, 0, 196605, 1, 0, 196604, 1, 0, 196603, 1, 0, -131078, 1, 0, -65542, 1, 0, -6, 1, 0, 131066, 1, 0, 196602, 1, 0, -196603, 1, 0, -131067, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, -131077, 1, 0, -131076, 1, 0, -131075, 1, 0)
-
-[node name="Objects" type="Node2D" parent="SubLevel_2"]
-editor_description = "When I started out, I would always make these \"scene objects container\" nodes a Node2D.
-That is a slight mistake, as Node2Ds can be moved around. This has many times led to bugs related to mysterious misalignments or offsets.
-Using a Node instead of a Node2D prevents that, as regular Nodes don't have a `position` property"
-
-[node name="Door" parent="SubLevel_2/Objects" instance=ExtResource("9_im4vm")]
-position = Vector2(64, 32)
-
-[node name="Tree" parent="SubLevel_2/Objects" instance=ExtResource("3_1dcbr")]
+[node name="Tree" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
 position = Vector2(32, -32)
 
-[node name="Tree2" parent="SubLevel_2/Objects" instance=ExtResource("3_1dcbr")]
+[node name="Tree2" parent="SubLevel_1/Objects" instance=ExtResource("3_1dcbr")]
 position = Vector2(96, 0)
 
-[node name="Rock" parent="SubLevel_2/Objects" instance=ExtResource("4_57b4m")]
+[node name="Rock" parent="SubLevel_1/Objects" instance=ExtResource("4_57b4m")]
 position = Vector2(-32, 32)
 
-[node name="Switch" parent="SubLevel_2/Objects" instance=ExtResource("5_ivcgl")]
+[node name="Switch" parent="SubLevel_1/Objects" instance=ExtResource("5_ivcgl")]
 position = Vector2(-160, 0)
 
-[node name="Crate" parent="SubLevel_2/Objects" instance=ExtResource("6_nguaa")]
+[node name="Crate" parent="SubLevel_1/Objects" instance=ExtResource("6_nguaa")]
 position = Vector2(-64, -32)
 
 [node name="Player" parent="." instance=ExtResource("1_78sfj")]
