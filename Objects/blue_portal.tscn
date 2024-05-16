@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://brdjhbchajsxd"]
+
+[ext_resource type="Script" path="res://Objects/switch.gd" id="1_vqxv2"]
+[ext_resource type="Texture2D" uid="uid://cc4bq88w884o1" path="res://Sprites/blueportals.png" id="2_ana1i"]
+[ext_resource type="Script" path="res://Components/interactable_component.gd" id="3_jsusq"]
+
+[node name="Blue_Portal" type="Node2D"]
+script = ExtResource("1_vqxv2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+texture = ExtResource("2_ana1i")
+hframes = 4
+
+[node name="InteractableComponent" type="Node" parent="."]
+script = ExtResource("3_jsusq")
+activate_by_player = false
+
+[connection signal="just_interacted" from="InteractableComponent" to="." method="_on_just_interacted"]
