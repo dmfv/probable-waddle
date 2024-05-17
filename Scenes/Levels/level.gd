@@ -3,6 +3,8 @@ extends Node2D
 @export var sublevels: Array[Node] = []
 @export var active_sublevel_id: int = 0 ## initial sublevel for the start 
 
+@export var cheats = true
+
 @export var switchers_doors_pathes_dict = {}  ## NodePath: NodePath. dict of NodePath (in editor) which connects switches with doors
 var switchers_doors = {}  ## Node: Node. inner array for signal usage
 
@@ -62,10 +64,11 @@ func enable_sublevel(sublevel: Node) -> void:
 	sublevel.get_tree().paused = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_focus_next"):
-		set_next_sublevel()
-	elif event.is_action_pressed("ui_focus_prev"):
-		set_prev_sublevel()
+	if cheats:
+		if event.is_action_pressed("ui_focus_next"):
+			set_next_sublevel()
+		elif event.is_action_pressed("ui_focus_prev"):
+			set_prev_sublevel()
 
 # intersublevel switchers
 func flip_switch(switch: Node, set_active: bool) -> void:

@@ -14,6 +14,7 @@
 [node name="Level" type="Node2D" node_paths=PackedStringArray("sublevels")]
 script = ExtResource("1_qkxui")
 sublevels = [NodePath("SubLevel_0"), NodePath("SubLevel_1")]
+cheats = false
 switchers_doors_pathes_dict = {
 NodePath("SubLevel_1/Objects/Switch"): NodePath("SubLevel_1/Objects/Door"),
 NodePath("SubLevel_0/Objects/Switch"): NodePath("SubLevel_1/Objects/Door")
